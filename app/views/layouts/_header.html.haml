@@ -1,2 +1,17 @@
 %nav.navbar.navbar-expand-md.navbar-dark.bg-dark.fixed-top
   =link_to 'Exhibition', root_url, class: 'navbar-brand'
+  %button.navbar-toggler{ type:"button", data: {toggle: "collapse", target:"#navbars"}, aria: { controls: "navbarsExampleDefault", expanded:"false", label:"Toggle navigation"}}
+    %span.navbar-toggler-icon
+
+  .collapse.navbar-collapse{id:"navbars"}
+    %ul.navbar-nav.mr-auto
+      %li.nav-item.active
+        =link_to users_path, class: "nav-link" do
+          ='Artists'
+          %span.sr-only = '(current)'
+
+    .navbar-nav
+      - if user_signed_in?
+        = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link'
+      - else
+        = link_to 'Log in', new_user_session_path, class: 'nav-link'
