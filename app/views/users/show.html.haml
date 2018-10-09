@@ -1,0 +1,8 @@
+%h1.mb-3= @user.email
+%h3 Galleries
+- @user.galleries.each do |gallery|
+  .card.mb-3
+    .card-header
+      =link_to gallery.name, user_gallery_path(@user, gallery)
+    .card-body
+      = gallery.description
