@@ -8,6 +8,8 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'support/factory_bot'
 require 'support/devise'
+require 'shoulda/matchers'
+require 'support/shoulda'
 require 'support/database_cleaner'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
