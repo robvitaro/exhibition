@@ -1,10 +1,13 @@
-%h1 Artists
-- @users.each do |user|
-  .card
-    .card-header
-      =link_to user.email, user_path(user)
-    .card-body
-      %h5 Galleries
-      %ul
-        - user.galleries.each do |gallery|
-          %li= link_to gallery.name, user_gallery_path(user, gallery)
+- if @users.any?
+  %h1 Artists
+  - @users.each do |user|
+    .card
+      .card-header
+        =link_to user.email, user_path(user)
+      .card-body
+        %h5 Galleries
+        %ul
+          - user.galleries.each do |gallery|
+            %li= link_to gallery.name, user_gallery_path(user, gallery)
+-else
+  %h1 No Artists!

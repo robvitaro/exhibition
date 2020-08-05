@@ -33,6 +33,7 @@
 /.idea/.gitignore
 /.idea/.rakeTasks
 /.idea/dataSources.xml
+/.idea/dataSources
 /.idea/exhibition.iml
 /.idea/misc.xml
 /.idea/modules.xml
