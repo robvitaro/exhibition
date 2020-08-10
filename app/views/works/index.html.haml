@@ -1,0 +1,10 @@
+- user = current_user ? 'Your' : "#{@user.email}'s"
+%h1.mb-3= "#{user} Works"
+- if current_user
+  =link_to 'New Work', new_user_work_path(@user), class: 'btn btn-primary mb-3'
+- @user.works.each do |work|
+  .card.mb-3
+    .card-header
+      =link_to work.name, user_work_path(@user, work)
+    .card-body
+      = work.description

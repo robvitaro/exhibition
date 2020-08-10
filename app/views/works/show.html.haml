@@ -1,0 +1,9 @@
+.card
+  .card-header
+    =@work.name
+  .card-body
+    =@work.description
+    %div
+      -@work.images.each do |image|
+        = image_tag(image.variant(resize_to_limit: [250, 250]))
+

@@ -2,6 +2,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :trackable, :validatable, :confirmable, :lockable
 
+  has_many :works
   has_many :galleries
 
   scope :confirmed, -> { where.not(confirmed_at: nil) }
