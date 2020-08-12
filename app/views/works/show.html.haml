@@ -3,7 +3,16 @@
     =@work.name
   .card-body
     =@work.description
-    %div
-      -@work.images.each do |image|
-        = image_tag(image.variant(resize_to_limit: [250, 250]))
-
+    -if @work.images.attached?
+      .carousel.slide{id: "carouselExampleControls", data: {ride: "carousel"}}
+        .carousel-inner
+          -@work.images.each_with_index do |image, index|
+            -classes = index == 0 ? "carousel-item active" : "carousel-item"
+            %div{class: classes}
+              = image_tag(image.variant(resize_to_limit: [250, 250]))
+        %a.carousel-control-prev{href: "#carouselExampleControls", role: "button", data: {slide: "prev"}}
+          %span.carousel-control-prev-icon{aria: {hidden:"true"}}
+          %span.sr-only Previous
+        %a.carousel-control-next{href: "#carouselExampleControls", role: "button", data: {slide: "next"}}
+          %span.carousel-control-next-icon{aria: {hidden:"true"}}
+          %span.sr-only Next
