@@ -1,7 +1,8 @@
-- user = current_user ? 'Your' : "#{@user.email}'s"
-%h1.mb-3= "#{user} Galleries"
-- if current_user
-  =link_to 'New Gallery', new_user_gallery_path(@user), class: 'btn btn-primary mb-3'
+- user = user_is_owner? ? 'Your' : "#{@user.email}'s"
+.d-flex
+  %h2.mb-3.mr-auto= "#{user} Galleries"
+  - if current_user
+    =link_to 'New Gallery', new_user_gallery_path(@user), class: 'btn btn-primary mb-3'
 - @user.galleries.each do |gallery|
   .card.mb-3
     .card-header

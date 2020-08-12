@@ -1,6 +1,8 @@
 .card
-  .card-header
-    =@work.name
+  .card-header.d-flex
+    .h4.mr-auto= @work.name
+    -if user_is_owner?
+      =link_to 'Edit', edit_user_work_path(@user, @work), class: 'btn btn-primary'
   .card-body
     =@work.description
     -if @work.images.attached?

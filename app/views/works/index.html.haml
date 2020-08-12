@@ -1,7 +1,8 @@
-- user = current_user ? 'Your' : "#{@user.email}'s"
-%h1.mb-3= "#{user} Works"
-- if current_user
-  =link_to 'New Work', new_user_work_path(@user), class: 'btn btn-primary mb-3'
+- user = user_is_owner? ? 'Your' : "#{@user.email}'s"
+.d-flex
+  %h2.mb-3.mr-auto= "#{user} Works"
+  - if user_is_owner?
+    =link_to 'New Work', new_user_work_path(@user), class: 'btn btn-primary mb-3'
 - @user.works.each do |work|
   .card.mb-3
     .card-header

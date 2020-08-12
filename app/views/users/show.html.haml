@@ -1,23 +1,21 @@
-- user = current_user ? 'Your' : "#{@user.email}'s"
-%h1.mb-3= "#{user} Galleries"
-- if current_user
-  =link_to 'New Gallery', new_user_gallery_path(@user), class: 'btn btn-primary mb-3'
+- user = user_is_owner? ? 'Your' : "#{@user.email}'s"
+.d-flex
+  %h2.mb-3.mr-auto= "#{user} Galleries"
+  - if user_is_owner?
+    =link_to 'New Gallery', new_user_gallery_path(@user), class: 'btn btn-primary mb-3'
 - @user.galleries.each do |gallery|
   .card.mb-3
     .card-header
       =link_to gallery.name, user_gallery_path(@user, gallery)
     .card-body
       = gallery.description
-- if current_user
-  %h1.mb-3 Your Works
-  =link_to 'New Work', new_user_work_path(@user), class: 'btn btn-primary mb-3'
+- if user_is_owner?
+  .d-flex
+    %h2.mb-3.mr-auto Your Works
+    =link_to 'New Work', new_user_work_path(@user), class: 'btn btn-primary mb-3'
   - @user.works.each do |work|
     .card.mb-3
       .card-header
         =link_to work.name, user_work_path(@user, work)
       .card-body
         = work.description
-        %div
-          -work.images.each do |image|
-            = image_tag(image.variant(resize_to_limit: [250, 250]))
-

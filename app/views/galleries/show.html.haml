@@ -1,5 +1,7 @@
 .card
-  .card-header
-    =@gallery.name
+  .card-header.d-flex
+    .h4.mr-auto= @gallery.name
+    -if user_is_owner?
+      =link_to 'Edit', edit_user_gallery_path(@user, @gallery), class: 'btn btn-primary'
   .card-body
     =@gallery.description

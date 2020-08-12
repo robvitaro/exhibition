@@ -3,6 +3,8 @@ class WorksController < ApplicationController
   before_action :set_user
   before_action :confirm_owner, except: [:index, :show]
 
+  helper_method :user_is_owner?
+
   def index
     @works = @user.works
   end
@@ -53,7 +55,11 @@ class WorksController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
+  def user_is_owner?
+    current_user == @user
+  end
+
   def confirm_owner
-    render json: {}, status: :unauthorized unless current_user == @user
+    render json: {}, status: :unauthorized unless user_is_owner?
   end
 end
