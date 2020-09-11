@@ -14,3 +14,4 @@ RUN bundle install --no-binstubs --jobs $(nproc) --retry 3
 COPY . .
 
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+# eof
